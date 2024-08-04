@@ -164,23 +164,32 @@ class Tracker:
 
         return frame
     
-       # missed frame to be defined , didnt't use video_frames defined earlier
-    def draw_team_ball_control(self,frame,video_frames,team_ball_control):
-      overlay = frame.copy()
-      cv2.rectangle(overlay, (1350, 850), (1900, 970), (255, 255, 255), -1)
-      alpha = 0.5
-      cv2.addWeighted(overlay, alpha, frame, 1 - alpha, 0, frame)
+    def draw_team_ball_control(self, frame, frame_num, team_ball_control):
+        team_1_num_frames = np.sum(team_ball_control[:frame_num + 1] == 1)
+        team_2_num_frames = np.sum(team_ball_control[:frame_num + 1] == 2)
+    
+    # Calculate the total number of frames considered
+        total_frames = team_1_num_frames + team_2_num_frames
+    
+    # Calculate the percentage of frames each team had control
+        if total_frames > 0:
+            team_1_percentage = team_1_num_frames / total_frames
+            team_2_percentage = team_2_num_frames / total_frames
+        else:
+            # Default to 50-50 if no frames are available
+            team_1_percentage = team_2_percentage = 0.5
 
-      team_ball_control_till_frame = team_ball_control[:video_frames+1] # might want to add : at the beginning
-      team_1_num_frames = team_ball_control_till_frame[team_ball_control_till_frame==1].shape[0]
-      team_2_num_frames = team_ball_control_till_frame[team_ball_control_till_frame==2].shape[0]
-      team_1 = team_1_num_frames/(team_1_num_frames+team_2_num_frames)  # team_num_1 wasn't defined so changed
-      team_2 = team_2_num_frames/(team_1_num_frames+team_2_num_frames)
+    # Draw a background rectangle
+        cv2.rectangle(frame, (10, 10), (300, 60), (255, 255, 255), -1)
+    
+    # Draw team control percentages
+        cv2.putText(frame, f"Team 1: {team_1_percentage * 100:.1f}%", (20, 30), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+        cv2.putText(frame, f"Team 2: {team_2_percentage * 100:.1f}%", (20, 55), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+    
+        return frame
 
-      cv2.putText(frame, f"Team 1 Ball Control:  {team_1*100:.2f}%", (1400,900), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
-      cv2.putText(frame, f"Team 2 Ball Control:  {team_2*100:.2f}%", (1400,950), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
-
-      return frame
 
     def draw_annotations(self, video_frames, tracks,team_ball_control):
       output_video_frames = []
