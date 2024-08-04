@@ -39,7 +39,7 @@ def main():
     view_transformer.add_transformed_positions_to_tracks(tracks)
 
     # Interpolate Ball Positions
-    # tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
+    tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
 
     # Speed and distance estimator
     speed_and_distance_estimator = SpeedAndDistance_Estimator()
