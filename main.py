@@ -63,21 +63,25 @@ def main():
     # Assign Ball Aquisition
     player_assigner = PlayerBallAssigner()
     team_ball_control = []
+
     for frame_num, player_track in enumerate(tracks['players']):
-        try:
-            ball_bbox = tracks['ball'][frame_num][1]['bbox']
+        ball_bbox = None
+        if frame_num in tracks['ball']:
+            if 1 in tracks['ball'][frame_num]:
+                ball_bbox = tracks['ball'][frame_num][1]['bbox']
+            else:
+                print(f"Object ID 1 not found in frame {frame_num}.")
+        
+        if ball_bbox:
             assigned_player = player_assigner.assign_player_ball(player_track, ball_bbox)
             if assigned_player != -1:
                 tracks['players'][frame_num][assigned_player]['has_ball'] = True
                 team_ball_control.append(tracks['players'][frame_num][assigned_player]['team'])
             else:
-                team_ball_control.append(team_ball_control[-1])
-        except KeyError as e:
-            print(f"KeyError: {e} at frame {frame_num}. Skipping this frame.")
-            if team_ball_control:  # Ensure there's a previous value to append
-                team_ball_control.append(team_ball_control[-1])
-            else:
-                team_ball_control.append(None)  # or handle as appropriate
+                team_ball_control.append(team_ball_control[-1] if team_ball_control else None)
+        else:
+            team_ball_control.append(team_ball_control[-1] if team_ball_control else None)
+
     team_ball_control = np.array(team_ball_control)
 
 
