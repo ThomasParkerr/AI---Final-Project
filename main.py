@@ -11,18 +11,18 @@ from speed_and_distance_estimator import SpeedAndDistance_Estimator
 
 def main():
     # Read Video
-    video_frames = read_video('C:/Users/user/OneDrive - Ashesi University/Desktop/basketball_analysis_main/input_videos/Test_Video.mp4')  # 'input_videos/Test_Video.mp4'
+    video_frames = read_video('input_videos/Test_Video.mp4')  # 'input_videos/Test_Video.mp4'
 
 
     # Initialize Tracker
-    tracker = Tracker('C:/Users/user/OneDrive - Ashesi University/Desktop/basketball_analysis_main/models/yolov8_trained_best_model.pt')
+    tracker = Tracker('models/yolov8_trained_best_model.pt')
 
     #tracker = Tracker('models/yolov8_trained_best_model.pt')
 
 
     tracks = tracker.get_object_tracks(video_frames,
                                        read_from_stub=False,
-                                       stub_path='C:/Users/user/OneDrive - Ashesi University/Desktop/basketball_analysis_main/stubs/tracks_stub.pkl')   #'stubs/track_stubs.pkl'
+                                       stub_path='stubs/tracks_stub.pkl')   #'stubs/track_stubs.pkl'
     # Get object positions 
     tracker.add_position_to_tracks(tracks)
 
@@ -30,7 +30,7 @@ def main():
     camera_movement_estimator = CameraMovementEstimator(video_frames[0])
     camera_movement_per_frame = camera_movement_estimator.getCameraMovement(video_frames,
                                                                                 read_from_stub=True,
-                                                                                stub_path='C:/Users/user/OneDrive - Ashesi University/Desktop/basketball_analysis_main/stubs/camera_movement_stub.pkl')  # 'stubs/camera_movement_stub.pkl', 
+                                                                                stub_path='stubs/camera_movement_stub.pkl')  # 'stubs/camera_movement_stub.pkl', 
     camera_movement_estimator.add_adjust_positions_to_tracks(tracks,camera_movement_per_frame)
 
     
@@ -39,7 +39,7 @@ def main():
     view_transformer.add_transformed_positions_to_tracks(tracks)
 
     # Interpolate Ball Positions
-    tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
+    # tracks["ball"] = tracker.interpolate_ball_positions(tracks["ball"])
 
     # Speed and distance estimator
     speed_and_distance_estimator = SpeedAndDistance_Estimator()
@@ -86,7 +86,7 @@ def main():
     speed_and_distance_estimator.draw_metrics(output_video_frames,tracks)  # draw_speed_and_distance
 
     # Save video
-    save_video(output_video_frames, 'C:/Users/user/OneDrive - Ashesi University/Desktop/basketball_analysis_main/output_videos/output_video.avi') # 'output_videos/output_video.avi'
+    save_video(output_video_frames, 'output_videos/Results.avi') # 'output_videos/output_video.avi'
    
 
 if __name__ == '__main__':
