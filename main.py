@@ -11,7 +11,7 @@ from speed_and_distance_estimator import SpeedAndDistance_Estimator
 
 def main():
     # Read Video
-    video_frames = read_video('input_videos/Rajon Rondo GAME-WINNER _ Lakers vs Celtics - February 7, 2019 (1).mp4')  # 'input_videos/Test_Video.mp4'
+    video_frames = read_video('1.mp4')  # 'input_videos/Test_Video.mp4'
 
 
     # Initialize Tracker
@@ -61,28 +61,20 @@ def main():
 
     
     # Assign Ball Aquisition
-    player_assigner = PlayerBallAssigner()
-    team_ball_control = []
-
+    player_assigner =PlayerBallAssigner()
+    team_ball_control= []
     for frame_num, player_track in enumerate(tracks['players']):
-        ball_bbox = None
-        if frame_num in tracks['ball']:
-            if 1 in tracks['ball'][frame_num]:
-                ball_bbox = tracks['ball'][frame_num][1]['bbox']
-            else:
-                print(f"Object ID 1 not found in frame {frame_num}.")
-        
-        if ball_bbox:
-            assigned_player = player_assigner.assign_player_ball(player_track, ball_bbox)
-            if assigned_player != -1:
-                tracks['players'][frame_num][assigned_player]['has_ball'] = True
-                team_ball_control.append(tracks['players'][frame_num][assigned_player]['team'])
-            else:
-                team_ball_control.append(team_ball_control[-1] if team_ball_control else None)
-        else:
-            team_ball_control.append(team_ball_control[-1] if team_ball_control else None)
+        ball_bbox = tracks['ball'][frame_num][1]['bbox']
+        assigned_player = player_assigner.assign_player_ball(player_track, ball_bbox)
 
-    team_ball_control = np.array(team_ball_control)
+        if assigned_player != -1:
+            tracks['players'][frame_num][assigned_player]['has_ball'] = True
+            team_ball_control.append(tracks['players'][frame_num][assigned_player]['team'])
+        else:
+            team_ball_control.append(team_ball_control[-1])
+    team_ball_control= np.array(team_ball_control)
+
+    
 
 
     # Draw output 
