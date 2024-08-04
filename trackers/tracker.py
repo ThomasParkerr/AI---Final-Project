@@ -48,7 +48,7 @@ class Tracker:
             detections += detections_batch
         return detections
 
-    def get_object_tracks(self, frames, read_from_stub=False, stub_path=None):
+    def get_object_tracks(self, frames, read_from_stub=False, stub_path='stubs/tracks_stub.pkl'):
 
         if read_from_stub and stub_path is not None and os.path.exists(stub_path):
             with open(stub_path,'rb') as f:
