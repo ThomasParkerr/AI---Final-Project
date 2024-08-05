@@ -1,28 +1,23 @@
 import streamlit as st
-import os
 import tempfile
-from utils import read_video, save_video
-from trackers import Tracker
+import os
 import cv2
 import numpy as np
+from utils import read_video, save_video
+from trackers import Tracker
 from team_assigner import TeamAssigner
 from player_ball_assigner import PlayerBallAssigner
 from camera_movement_estimator import CameraMovementEstimator
 from view_transformer import ViewTransformer
 from speed_and_distance_estimator import SpeedAndDistance_Estimator
-import streamlit.cli as stcli
-import sys
-
-# Set page config
-st.set_page_config(page_title="Basketball Video Hosting and Analysis", layout="wide")
 
 # Define stub paths
 STUB_PATH = "stubs"
 
 # Function to process the video
-def process_video(input_path, output_path, progress_bar):
+def process_video(input_file, output_path, progress_bar):
     # Read Video
-    video_frames = read_video(input_path)
+    video_frames = read_video(input_file)
     progress_bar.progress(10)
 
     # Initialize Tracker
@@ -31,7 +26,7 @@ def process_video(input_path, output_path, progress_bar):
     tracks = tracker.get_object_tracks(video_frames, read_from_stub=False, stub_path=stub_file)
     progress_bar.progress(20)
     
-    # Get object positions 
+    # Get object positions
     tracker.add_position_to_tracks(tracks)
     progress_bar.progress(30)
 
@@ -80,7 +75,7 @@ def process_video(input_path, output_path, progress_bar):
     team_ball_control = np.array(team_ball_control)
     progress_bar.progress(90)
 
-    # Draw output 
+    # Draw output
     output_video_frames = tracker.draw_annotations(video_frames, tracks, team_ball_control)
     output_video_frames = camera_movement_estimator.draw_camera_movement(output_video_frames, camera_movement_per_frame)
     if 'ball' in tracks:
@@ -153,4 +148,4 @@ def main():
 
 # Run the Streamlit app when the script is executed directly
 if __name__ == "__main__":
-    stcli.main()  # This starts the Streamlit server with the current script
+    main()
