@@ -11,7 +11,7 @@ from speed_and_distance_estimator import SpeedAndDistance_Estimator
 
 def main():
     # Read Video
-    video_frames = read_video('input_videos/Rajon Rondo GAME-WINNER _ Lakers vs Celtics - February 7, 2019 (1).mp4.mp4')  # 'input_videos/Test_Video.mp4'
+    video_frames = read_video('input_videos/Rajon Rondo GAME-WINNER _ Lakers vs Celtics - February 7, 2019 (1).mp4')  # 'input_videos/Test_Video.mp4'
 
 
     # Initialize Tracker
