@@ -88,7 +88,7 @@ def process_video(input_file, output_path, progress_bar):
 
 # Streamlit UI
 def main():
-    st.title("Basketball Video Hosting and Analysis")
+    st.title("Sports Analytics and Predictions")
 
     # Sidebar for video upload
     st.sidebar.header("Upload Your Video")
