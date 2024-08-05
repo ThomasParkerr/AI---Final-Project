@@ -27,11 +27,6 @@ To deploy and run the application locally:
 
 1. **Download the Repository and Extract The files**
 
-    ```bash
-    git clone <repository-url>
-    cd <repository-directory>
-    ```
-
 2. **Install Required Packages**
 
     Ensure you have `pip` installed and then install all required dependencies:
@@ -40,7 +35,7 @@ To deploy and run the application locally:
     pip install -r requirements.txt
     ```
 
-    The `requirements.txt` file should include all necessary packages like `streamlit`, `opencv-python-headless`, `numpy`, and any other dependencies used in your project.
+    The `requirements.txt` file should include all necessary packages like `streamlit`, `opencv-python-headless`, `numpy`, and any other dependencies used.
 
 3. **Run the Local Application**
 
@@ -59,11 +54,6 @@ To deploy and run the application locally:
 To deploy and run the application online using ngrok:
 
 1. **Download the Repository and Extract all the files**
-
-    ```bash
-    git clone <repository-url>
-    cd <repository-directory>
-    ```
 
 2. **Install Required Packages**
 
