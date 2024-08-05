@@ -1,6 +1,6 @@
 # AI---Final-Project
 
-Here’s a comprehensive README file for your object tracking and detection project, detailing how to deploy the application locally and online, as well as instructions on how to use it:
+Below is a  Youtube video detailing how to use the Sports Prediction and Analytics Program, that implements yolov8 for object detection and tracking.
 
 YOUTUBE VIDEO :
 
