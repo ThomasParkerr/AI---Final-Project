@@ -23,7 +23,7 @@ def process_video(input_file, output_path, progress_bar):
     progress_bar.progress(10)
 
     # Initialize Tracker
-    tracker = Tracker('models/yolov8_trained_best_model.pt')
+    tracker = Tracker('models/yolov8_trained_model_best.pt')
     stub_file = os.path.join(STUB_PATH, 'tracker_stub.pkl')
     tracks = tracker.get_object_tracks(video_frames, read_from_stub=False, stub_path=stub_file)
     progress_bar.progress(20)
