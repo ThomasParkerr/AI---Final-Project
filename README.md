@@ -2,6 +2,8 @@
 
 Here’s a comprehensive README file for your object tracking and detection project, detailing how to deploy the application locally and online, as well as instructions on how to use it:
 
+YOUTUBE VIDEO :
+
 ---
 
 # Object Tracking and Detection Project
@@ -52,7 +54,7 @@ To deploy and run the application locally:
 
     Open your web browser and navigate to `http://localhost:8501` to use the application.
 
-### Online Deployment
+### Online Deployment (On Computer/Laptop)
 
 To deploy and run the application online using ngrok:
 
@@ -79,7 +81,32 @@ To deploy and run the application online using ngrok:
 
     Run the deploy.py file to expose the app to the internet, click on the generated link
 
+### Online Deployment (On Google Colab or a virtual environment )
 
+To deploy and run the application online using ngrok:
+
+1. **Clone the Repository**
+
+    ```bash
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+
+2. **Install Required Packages**
+
+    Ensure you have `pip` installed and then install all required dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Run the Online Application**
+
+    Copy and paste onlineapp.py/localapp.py into a cell on Jupyter Notebook and run it
+
+4. **Access the Application Online**
+
+    Copy and paste deploy.py into the next cell and run it, click on the link to access the app on the web
     
 
 ## Using the Application
@@ -95,6 +122,9 @@ To deploy and run the application online using ngrok:
 
 4. **Download the Processed Video**
     - After processing is complete, download the output video which includes all accumulated metrics and annotations. The processed video will be displayed along with a download button.
+  
+5. **More Videos**
+       - Restart the application and upload another video, errors might be encountered if you upload 2 videos in one session
 
 ## Troubleshooting
 
