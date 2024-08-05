@@ -81,23 +81,6 @@ To deploy and run the application online using ngrok:
 
 4. **Access the Application Online**
 
-    Install `ngrok` and create a tunnel to expose your local server online:
-
-```bash
-pip install pyngrok
-```
-import subprocess
-from pyngrok import ngrok
-import time
- ngrok.set_auth_token("2jUZ8Jy50WpJ3iJOHm1xnxLYni8_5dZK7zB5pudZAdeVtg3Dc")
-
-process = subprocess.Popen(['streamlit', 'run', 'onlineapp.py'])
-
-time.sleep(5)
-
-public_url = ngrok.connect(addr="8501", proto="http")
-print(f'Streamlit app is live at {public_url}')
-
     You will receive a public URL from ngrok. Click on the link provided by ngrok to access the web application online.
 
 ## Using the Application
