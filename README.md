@@ -73,15 +73,14 @@ To deploy and run the application online using ngrok:
 
 3. **Run the Online Application**
 
-    Execute the following command to start the Streamlit application:
-
-    ```bash
-    streamlit run onlineapp.py
-    ```
+    Run the onlineapp.py file
 
 4. **Access the Application Online**
 
-    You will receive a public URL from ngrok. Click on the link provided by ngrok to access the web application online.
+    Run the deploy.py file to expose the app to the internet, click on the generated link
+
+
+    
 
 ## Using the Application
 
