@@ -25,7 +25,7 @@ This project utilizes YOLOv8 for object tracking and detection to analyze player
 
 To deploy and run the application locally:
 
-1. **Clone the Repository**
+1. **Download the Repository and Extract The files**
 
     ```bash
     git clone <repository-url>
@@ -58,7 +58,7 @@ To deploy and run the application locally:
 
 To deploy and run the application online using ngrok:
 
-1. **Clone the Repository**
+1. **Download the Repository and Extract all the files**
 
     ```bash
     git clone <repository-url>
