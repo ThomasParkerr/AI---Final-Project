@@ -1,5 +1,3 @@
-gitpython
-subprocess
 streamlit
 pyngrok
 ultralytics
