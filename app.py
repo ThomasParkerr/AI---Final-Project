@@ -10,6 +10,8 @@ from player_ball_assigner import PlayerBallAssigner
 from camera_movement_estimator import CameraMovementEstimator
 from view_transformer import ViewTransformer
 from speed_and_distance_estimator import SpeedAndDistance_Estimator
+import streamlit.cli as stcli
+import sys
 
 # Set page config
 st.set_page_config(page_title="Basketball Video Hosting and Analysis", layout="wide")
@@ -90,64 +92,65 @@ def process_video(input_path, output_path, progress_bar):
     progress_bar.progress(100)
 
 # Streamlit UI
-st.title("Basketball Video Hosting and Analysis")
+def main():
+    st.title("Basketball Video Hosting and Analysis")
 
-# Sidebar for video upload
-st.sidebar.header("Upload Your Video")
-uploaded_file = st.sidebar.file_uploader("Choose a video file", type=["mp4", "avi", "mov"])
+    # Sidebar for video upload
+    st.sidebar.header("Upload Your Video")
+    uploaded_file = st.sidebar.file_uploader("Choose a video file", type=["mp4", "avi", "mov"])
 
-if uploaded_file is not None:
-    # Create a temporary file to store the uploaded video
-    with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as tmpfile:
-        tmpfile.write(uploaded_file.getvalue())
-        temp_input_path = tmpfile.name
+    if uploaded_file is not None:
+        # Create a temporary file to store the uploaded video
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as tmpfile:
+            tmpfile.write(uploaded_file.getvalue())
+            temp_input_path = tmpfile.name
 
-    st.sidebar.video(temp_input_path)
+        st.sidebar.video(temp_input_path)
 
-    if st.sidebar.button("Process Video"):
-        progress_bar = st.progress(0)
-        with st.spinner("Processing video..."):
-            # Create a temporary file for the output video
-            with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as tmpfile:
-                temp_output_path = tmpfile.name
+        if st.sidebar.button("Process Video"):
+            progress_bar = st.progress(0)
+            with st.spinner("Processing video..."):
+                # Create a temporary file for the output video
+                with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as tmpfile:
+                    temp_output_path = tmpfile.name
+                
+                process_video(temp_input_path, temp_output_path, progress_bar)
             
-            process_video(temp_input_path, temp_output_path, progress_bar)
-        
-        st.success("Video processed successfully!")
+            st.success("Video processed successfully!")
 
-        # Display processed video
-        st.header("Processed Video")
-        
-        # Create two columns
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            # Display video player
-            st.video(temp_output_path)
-        
-        with col2:
-            # Display controls
-            st.subheader("Video Controls")
-            st.write("Use the video player controls to play, pause, and seek through the video.")
+            # Display processed video
+            st.header("Processed Video")
             
-            # Download button for processed video
-            with open(temp_output_path, "rb") as file:
-                st.download_button(
-                    label="Download Processed Video",
-                    data=file,
-                    file_name="processed_video.mp4",
-                    mime="video/mp4"
-                )
+            # Create two columns
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                # Display video player
+                st.video(temp_output_path)
+            
+            with col2:
+                # Display controls
+                st.subheader("Video Controls")
+                st.write("Use the video player controls to play, pause, and seek through the video.")
+                
+                # Download button for processed video
+                with open(temp_output_path, "rb") as file:
+                    st.download_button(
+                        label="Download Processed Video",
+                        data=file,
+                        file_name="processed_video.mp4",
+                        mime="video/mp4"
+                    )
 
-        # Clean up temporary files
-        os.unlink(temp_input_path)
-        os.unlink(temp_output_path)
+            # Clean up temporary files
+            os.unlink(temp_input_path)
+            os.unlink(temp_output_path)
 
-else:
-    st.info("Upload a video file from the sidebar to get started.")
+    else:
+        st.info("Upload a video file from the sidebar to get started.")
 
-st.warning("Note: Uploaded and processed videos are temporarily stored and will be deleted after processing.")
+    st.warning("Note: Uploaded and processed videos are temporarily stored and will be deleted after processing.")
 
-
-
-streamlit run app.py
+# Run the Streamlit app when the script is executed directly
+if __name__ == "__main__":
+    stcli.main()  # This starts the Streamlit server with the current script
