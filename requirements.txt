@@ -1,11 +1,10 @@
-streamlit
-pyngrok
-ultralytics
-supervision
-opencv-python
-numpy
-matplotlib
-pandas
-tempfile
-gitpython
-subprocess
+pip install streamlit
+pip install pyngrok
+pip install ultralytics
+pip install supervision
+pip install opencv-python
+pip install numpy
+pip install matplotlib
+pip install pandas
+pip install gitpython
+pip install subprocess
