@@ -8,5 +8,4 @@ opencv-python
 numpy
 matplotlib
 pandas
-gitpython
-subprocess
+
