@@ -130,5 +130,3 @@ To deploy and run the application online using ngrok:
 
 
 ---
-
-Replace `<repository-url>` and `<repository-directory>` with the actual URL and directory name of your repository. This README file provides a clear guide for deploying and using your application, both locally and online.
