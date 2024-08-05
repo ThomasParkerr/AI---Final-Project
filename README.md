@@ -21,6 +21,12 @@ This project utilizes YOLOv8 for object tracking and detection to analyze player
 
 ## Deployment
 
+## Online Deployment on Colab (Simplified)(Preferred Method)
+
+    - Download DeploymentOnColab.ipynb
+    - Upload it as a notebook file to Googlecolab
+    - Run (Switch to GPU if available)
+
 ### Local Deployment
 
 To deploy and run the application locally:
@@ -49,31 +55,11 @@ To deploy and run the application locally:
 
     Open your web browser and navigate to `http://localhost:8501` to use the application.
 
-### Online Deployment (On Computer/Laptop)
+
+### Online Deployment (On Google Colab)(Long version)
 
 To deploy and run the application online using ngrok:
-
-1. **Download the Repository and Extract all the files**
-
-2. **Install Required Packages**
-
-    Ensure you have `pip` installed and then install all required dependencies:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3. **Run the Online Application**
-
-    Run the onlineapp.py file
-
-4. **Access the Application Online**
-
-    Run the deploy.py file to expose the app to the internet, click on the generated link
-
-### Online Deployment (On Google Colab)
-
-To deploy and run the application online using ngrok:
+Note : with GoogleColab use ! before any cmd/bash operation
 
 1. **Clone the Repository**
 
@@ -91,20 +77,38 @@ To deploy and run the application online using ngrok:
     ```
 
 3. **Run the Online Application**
+    Note: For this step you have to place %%write onlineapp.py or %%write localapp.py above the copied and pasted text or else colab will not recognize it
 
     Copy and paste onlineapp.py/localapp.py into a cell on Jupyter Notebook and run it
 
-4. **Access the Application Online**
-
+5. **Access the Application Online**
+    
     Copy and paste deploy.py into the next cell and run it, click on the link to access the app on the web
     
-## Online Deployment on Colab (Simplified)
 
-    - Download DeploymentOnColab.ipynb
-    - Upload it as a notebook file to colab
-    - Run (Switch to GPU if available)
+### Online Deployment (On Computer/Laptop)
 
+To deploy and run the application online using ngrok:
 
+1. **Download the Repository and Extract all the files**
+
+2. **Install Required Packages**
+
+    Ensure you have `pip` installed and then install all required dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Run the Online Application**
+   
+    Run the onlineapp.py file
+
+4. **Access the Application Online**
+    Run the deploy.py file to expose the app to the internet, click on the generated link
+
+   
+   
 ## Using the Application
 
 1. **Upload a Video**
