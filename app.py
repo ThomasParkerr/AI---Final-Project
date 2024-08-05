@@ -16,7 +16,7 @@ import time
 import git
 
 # Clone the GitHub repository
-repo_url = "https://github.com/your-username/your-repo.git"
+repo_url = "https://github.com/ThomasParkerr/AI---Final-Project.git"
 repo_path = "your-repo"
 if not os.path.exists(repo_path):
     git.Repo.clone_from(repo_url, repo_path)
