@@ -2,7 +2,7 @@
 
 Below is a  Youtube video detailing how to use the Sports Prediction and Analytics Program, that implements yolov8 for object detection and tracking.
 
-YOUTUBE VIDEO :
+YOUTUBE VIDEO : https://youtu.be/EKQktOpgPwA
 
 ---
 
