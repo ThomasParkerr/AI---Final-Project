@@ -147,3 +147,7 @@ else:
     st.info("Upload a video file from the sidebar to get started.")
 
 st.warning("Note: Uploaded and processed videos are temporarily stored and will be deleted after processing.")
+
+
+
+streamlit run app.py
