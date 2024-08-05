@@ -15,7 +15,7 @@ def main():
 
 
     # Initialize Tracker
-    tracker = Tracker('models/yolov8_trained_best_model.pt')
+    tracker = Tracker('models/yolov8_trained_model_best.pt')
 
     #tracker = Tracker('models/yolov8_trained_best_model.pt')
 
