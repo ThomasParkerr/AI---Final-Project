@@ -35,7 +35,7 @@ def process_video(video_file):
     
     # Camera movement estimator
     camera_movement_estimator = CameraMovementEstimator(video_frames[0])
-    camera_movement_per_frame = camera_movement_estimator.getCameraMovement(video_frames, read_from_stub=False)
+    camera_movement_per_frame = camera_movement_estimator.getCameraMovement(video_frames, read_from_stub=True)
     camera_movement_estimator.add_adjust_positions_to_tracks(tracks, camera_movement_per_frame)
     
     # View Transformer
