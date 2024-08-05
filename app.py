@@ -11,9 +11,20 @@ from speed_and_distance_estimator import SpeedAndDistance_Estimator
 import tempfile
 import os
 from pyngrok import ngrok
+import subprocess
+import time
+import git
 
+# Clone the GitHub repository
+repo_url = "https://github.com/your-username/your-repo.git"
+repo_path = "your-repo"
+if not os.path.exists(repo_path):
+    git.Repo.clone_from(repo_url, repo_path)
 
-# Use my ngrok auth token
+# Change to the repository directory
+os.chdir(repo_path)
+
+# Use your ngrok auth token
 ngrok.set_auth_token("2jUZ8Jy50WpJ3iJOHm1xnxLYni8_5dZK7zB5pudZAdeVtg3Dc")
 
 st.set_page_config(page_title="Basketball Video Analysis", layout="wide")
@@ -84,7 +95,7 @@ def process_video(video_file):
     return output_path
 
 def main():
-    st.title("Football Video Analysis")
+    st.title("Basketball Video Analysis")
     
     uploaded_file = st.file_uploader("Choose a video file", type=["mp4", "avi"])
     
@@ -108,17 +119,20 @@ def main():
                 )
 
 if __name__ == '__main__':
-    main()
+    # Run Streamlit app
+    process = subprocess.Popen(['streamlit', 'run', __file__])
 
-    # Use your ngrok auth token
-ngrok.set_auth_token("2jUZ8Jy50WpJ3iJOHm1xnxLYni8_5dZK7zB5pudZAdeVtg3Dc")
+    # Give the server some time to start
+    time.sleep(5)
 
-# Run Streamlit app
-process = subprocess.Popen(['streamlit', 'run', 'app.py'])
+    # Expose the Streamlit app via ngrok
+    public_url = ngrok.connect(addr="8501", proto="http")
+    print(f'Streamlit app is live at {public_url}')
 
-# Give the server some time to start
-time.sleep(5)
-
-# Expose the Streamlit app via ngrok
-public_url = ngrok.connect(addr="8501", proto="http")
-print(f'Streamlit app is live at {public_url}')
+    # Keep the script running
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("Shutting down server...")
+        ngrok.kill()
