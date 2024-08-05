@@ -124,7 +124,7 @@ To deploy and run the application online using ngrok:
     - After processing is complete, download the output video which includes all accumulated metrics and annotations. The processed video will be displayed along with a download button.
   
 5. **More Videos**
-       - Restart the application and upload another video, errors might be encountered if you upload 2 videos in one session
+       - To Analyze multiple videos, Download each previously Analyzed Video before submitting another one to be analyzed
 
 ## Troubleshooting
 
