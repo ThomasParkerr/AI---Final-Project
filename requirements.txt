@@ -8,4 +8,4 @@ matplotlib
 pandas
 tempfile
 gitpython
-subprocess32
+subprocess
