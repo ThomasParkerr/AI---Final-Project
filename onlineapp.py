@@ -1,3 +1,5 @@
+##Uncomment %%write onlineapp.py when doing this on GoogleColab
+#%%write onlineapp.py
 import streamlit as st
 import tempfile
 import os
