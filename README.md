@@ -81,7 +81,7 @@ To deploy and run the application online using ngrok:
 
     Run the deploy.py file to expose the app to the internet, click on the generated link
 
-### Online Deployment (On Google Colab or a virtual environment )
+### Online Deployment (On Google Colab)
 
 To deploy and run the application online using ngrok:
 
@@ -108,6 +108,12 @@ To deploy and run the application online using ngrok:
 
     Copy and paste deploy.py into the next cell and run it, click on the link to access the app on the web
     
+## Online Deployment on Colab (Simplified)
+
+    - Download DeploymentOnColab.ipynb
+    - Upload it as a notebook file to colab
+    - Run (Switch to GPU if available)
+
 
 ## Using the Application
 
