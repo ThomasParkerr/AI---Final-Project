@@ -1,11 +1,11 @@
 import streamlit as st
 import tempfile
 import os
+from utils import read_video, save_video
+from trackers import Tracker
 import cv2
 import numpy as np
-from utils import read_video, save_video
 from team_assigner import TeamAssigner
-from trackers import Tracker
 from player_ball_assigner import PlayerBallAssigner
 from camera_movement_estimator import CameraMovementEstimator
 from view_transformer import ViewTransformer
@@ -88,7 +88,7 @@ def process_video(input_file, output_path, progress_bar):
 
 # Streamlit UI
 def main():
-    st.title("Sports Prediction and Analytics")
+    st.title("Sports Prediction and Analysis Application")
 
     # Sidebar for video upload
     st.sidebar.header("Upload Your Video")
@@ -102,19 +102,19 @@ def main():
 
         st.sidebar.video(temp_input_path)
 
-        if st.sidebar.button("Process Video"):
+        if st.sidebar.button("Analyze Video"):
             progress_bar = st.progress(0)
-            with st.spinner("Processing video..."):
+            with st.spinner("Analyzing video..."):
                 # Create a temporary file for the output video
                 with tempfile.NamedTemporaryFile(delete=False, suffix='.mp4') as tmpfile:
                     temp_output_path = tmpfile.name
                 
                 process_video(temp_input_path, temp_output_path, progress_bar)
             
-            st.success("Video processed successfully!")
+            st.success("Video Analyzed successfully!")
 
             # Display processed video
-            st.header("Processed Video")
+            st.header("Analyzed Video")
             
             # Create two columns
             col1, col2 = st.columns(2)
@@ -131,9 +131,9 @@ def main():
                 # Download button for processed video
                 with open(temp_output_path, "rb") as file:
                     st.download_button(
-                        label="Download Processed Video",
+                        label="Download Analyzed Video",
                         data=file,
-                        file_name="Analyzed_Video.mp4",
+                        file_name="Analyzed_video.mp4",
                         mime="video/mp4"
                     )
 
@@ -144,9 +144,8 @@ def main():
     else:
         st.info("Upload a video file from the sidebar to get started.")
 
-    st.warning("Note: Uploaded and processed videos are temporarily stored and will be deleted after processing.")
+    st.warning("Note: Uploaded and Analyzed videos are temporarily stored and will be deleted after processing.")
 
 # Run the Streamlit app when the script is executed directly
 if __name__ == "__main__":
     main()
-
