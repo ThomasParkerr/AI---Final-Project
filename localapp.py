@@ -1,3 +1,5 @@
+##Uncomment %%write localeapp.py when doing this on GoogleColab
+#%%write localapp.py
 import streamlit as st
 import tempfile
 import os
