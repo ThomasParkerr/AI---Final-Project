@@ -29,7 +29,7 @@ def main():
     # camera movement estimator
     camera_movement_estimator = CameraMovementEstimator(video_frames[0])
     camera_movement_per_frame = camera_movement_estimator.getCameraMovement(video_frames,
-                                                                                read_from_stub=False,
+                                                                                read_from_stub=True,
                                                                                 stub_path='stubs/camera_movement_stub.pkl')  # 'stubs/camera_movement_stub.pkl', 
     camera_movement_estimator.add_adjust_positions_to_tracks(tracks,camera_movement_per_frame)
 
