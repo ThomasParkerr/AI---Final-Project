@@ -6,3 +6,6 @@ opencv-python
 numpy
 matplotlib
 pandas
+tempfile
+gitpython
+subprocess32
