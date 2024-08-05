@@ -43,7 +43,7 @@ class CameraMovementEstimator():
     # removed player_positions
 
     
-    def getCameraMovement(self, frames,read_from_stub=False, stub_path='stubs/camera_movement_stub.pkl'):
+    def getCameraMovement(self, frames,read_from_stub=True, stub_path='stubs/camera_movement_stub.pkl'):
       #Read from stub
       if read_from_stub:
         if stub_path and os.path.exists(stub_path):
