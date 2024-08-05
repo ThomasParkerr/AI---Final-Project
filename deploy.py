@@ -8,6 +8,8 @@ ngrok.set_auth_token("2jUZ8Jy50WpJ3iJOHm1xnxLYni8_5dZK7zB5pudZAdeVtg3Dc")
 # Run Streamlit app
 process = subprocess.Popen(['streamlit', 'run', 'onlineapp.py'])
 
+
+
 # Give the server some time to start
 time.sleep(5)
 
